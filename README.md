@@ -22,5 +22,5 @@ console.log(await require('elevated').check() ? 'elevated' : 'unelevated');
 ```javascript
 require('elevated').check().then(function(elevated){
   console.log(elevated ? 'elevated' : 'unelevated');
-]);
+});
 ```
