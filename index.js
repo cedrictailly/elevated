@@ -10,6 +10,6 @@ module.exports.check = () => {
         resolve(!error);
       });
     else
-      resolve(!!process.env.SUDO_UID);
+      resolve(process.getuid() == 0 || !!process.env.SUDO_UID);
   });
 };
