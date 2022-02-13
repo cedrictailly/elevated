@@ -1,3 +1,7 @@
+/**
+ * @author Cédric Tailly
+ * @description Check if script is executed in an elevated mode : with sudo on Linux and from an administrator account on Windows.
+ */
 
 module.exports.check = () => {
   return new Promise((resolve, reject) => {
