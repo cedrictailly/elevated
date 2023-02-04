@@ -21,15 +21,9 @@ yarn add elevated
 ### elevated.check()
 
 ```javascript
-// ES6 style
-
-console.log(await require('elevated').check() ? 'elevated' : 'unelevated');
-
-// Callback style
-
-require('elevated').check().then(function(elevated){
-  console.log(elevated ? 'elevated' : 'unelevated');
-});
+console.log(
+  require('elevated').check() ? 'elevated' : 'unelevated'
+);
 ```
 
 ### elevated.required()
@@ -37,5 +31,5 @@ require('elevated').check().then(function(elevated){
 This way an exception is thrown with a platform specific message if the runtime is not elevated.
 
 ```javascript
-await require('elevated').required();
+require('elevated').required();
 ```
