@@ -8,15 +8,16 @@ const win32 = require('os').platform() == 'win32';
 module.exports.message = win32 ? "Administrator privileges required" : "SUDO required";
 
 module.exports.check = () => {
-  if ( win32 )
-    try {
-      require('child_process').execSync('net session', { stdio: 'ignore'})
-      return true;
-    } catch (error) {
-      return false;
-    }
-  else
-    resolve(process.getuid() == 0 || !!process.env.SUDO_UID);
+
+  if ( !win32 )
+    return process.getuid() == 0 || !!process.env.SUDO_UID;
+
+  try {
+    require('child_process').execSync('net session', { stdio: 'ignore'})
+    return true;
+  } catch (error) {
+    return false;
+  }
 };
 
 module.exports.required = () => {
