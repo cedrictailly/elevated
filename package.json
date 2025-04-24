@@ -1,25 +1,59 @@
 {
   "name": "elevated",
-  "version": "1.1.4",
-  "description": "Check if script is executed in an elevated mode : with sudo on Linux and from an administrator account on Windows.",
-  "main": "index.js",
+  "version": "1.2.0",
+  "description": "Check if script is executed with elevated permissions: using sudo on Linux or administrator rights on Windows",
+  "type": "commonjs",
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs"
+    }
+  },
+  "files": [
+    "index.cjs",
+    "index.mjs",
+    "index.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^3.1.2"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cedrictailly/elevated.git"
   },
   "keywords": [
-    "Windows",
-    "Sudo",
-    "NodeJS",
-    "Rights"
+    "elevated",
+    "admin",
+    "administrator",
+    "sudo",
+    "permissions",
+    "privileges",
+    "root",
+    "windows",
+    "linux",
+    "security",
+    "nodejs",
+    "rights",
+    "cli",
+    "elevation",
+    "uac",
+    "user-account-control"
   ],
   "author": "Cédric Tailly",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cedrictailly/elevated/issues"
   },
-  "homepage": "https://github.com/cedrictailly/elevated#readme"
+  "homepage": "https://github.com/cedrictailly/elevated#readme",
+  "engines": {
+    "node": ">=12.2.0"
+  }
 }
