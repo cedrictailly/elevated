@@ -1,6 +1,6 @@
 {
   "name": "elevated",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Check if script is executed with elevated permissions: using sudo on Linux or administrator rights on Windows",
   "type": "commonjs",
   "main": "./index.cjs",

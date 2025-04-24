@@ -9,7 +9,7 @@ Check if a script is executed with elevated permissions:
 - Using SUDO on Linux
 - From an administrator account on Windows
 
-A lightweight utility to verify and enforce elevated privileges for Node.js applications.
+A lightweight utility to verify and enforce elevated privileges for Node.js applications when you need to perform operations that require administrative rights.
 
 ## Compatibility
 
@@ -36,40 +36,34 @@ pnpm add elevated
 
 ### CommonJS (Node.js)
 
-#### elevated.check()
+#### Functions
+
+The `check` method returns a boolean indicating if we are elevated or not.
 
 ```javascript
-const elevated = require('elevated');
 console.log(
-  elevated.check() ? 'elevated' : 'unelevated'
+  require('elevated').check() ? 'elevated' : 'unelevated'
 );
 ```
 
-#### elevated.required()
-
-This way an exception is thrown with a platform specific message if the runtime is not elevated.
+Using `required` function, an exception is thrown with a platform specific message if the runtime is not elevated.
 
 ```javascript
-const elevated = require('elevated');
-elevated.required();
+require('elevated').required();
 ```
 
-#### elevated.message
+#### Custom error message
 
-Customize the error message thrown by `required()` when the script is not running with elevated permissions.
+Customize the error message thrown by `required()` when the script is not running with elevated permissions...
 
 ```javascript
-const elevated = require('elevated');
+require('elevated').required('Please run as administrator');
+```
 
-// Set a custom error message
-elevated.message = 'This application requires administrator privileges to run';
+...or by setting-up the default one.
 
-// Will throw your custom error message if not elevated
-try {
-  elevated.required();
-} catch (error) {
-  console.error(error.message); // Your custom message will be shown
-}
+```javascript
+require('elevated').defaultMessage = 'Please run as administrator';
 ```
 
 ### ESM (ECMAScript Modules)
@@ -77,13 +71,10 @@ try {
 #### Using named imports
 
 ```javascript
-import { check, required, message } from 'elevated';
+import { check, required } from 'elevated';
 
 // Check if elevated
 console.log(check() ? 'elevated' : 'unelevated');
-
-// Customize error message
-message = 'Custom error message for non-elevated execution';
 
 // Require elevated permissions
 try {
@@ -99,23 +90,21 @@ try {
 ```javascript
 import elevated from 'elevated';
 
-// Check if elevated
 console.log(elevated.check() ? 'elevated' : 'unelevated');
 
-// Customize error message
-elevated.message = 'Please run as administrator';
+(...)
+```
 
-// Require elevated permissions
-try {
-  elevated.required();
-  console.log('Script is running with elevated permissions');
-} catch (error) {
-  console.error('Error:', error.message);
-}
+## Testing
+
+This package includes tests for both standard and elevated permission contexts:
+
+```bash
+npm test
 ```
 
 ## Contributing
 
-Contributions, issues and feature requests are welcome. Feel free to check the [issues page](https://github.com/yourusername/elevated/issues) if you want to contribute.
+Contributions, issues and feature requests are welcome. Feel free to check the [issues page](https://github.com/cedrictailly/elevated/issues) if you want to contribute.
 
 Pull requests for macOS support would be particularly appreciated!
